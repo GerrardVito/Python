@@ -6,18 +6,14 @@ def integral(a: int, b:int= 1, x1=0, x2=0):
     else:
         print(f"Hasil integrasi = {(koef * (int(x1) ** pangkat)) - (koef * (int(x2) ** pangkat))}")
 
-
-y = 0
-g = ['x', 'x']
+import re
+pattern = r"\b\d{1,3}(?:,\d{3})*(?:\.\d+)?\b"
 ygy=input("Integral dari (format: Koefisien x^ pangkat):")
-limit = int(input("Limit 1: "))
-limit2=int(input ("Limit 2: "))
-for chai in ygy:
-    # noinspection PyBroadException
-    try:
-        d = int(chai)
-        g.append(d)
-    except:
-        pass
-print(g)
-integral(g[2], g[3], limit, limit2)
+matches = re.findall(pattern, ygy)
+limita = input('Limit atas? : ')
+limitb = input('Limit bawah? : ')
+pros = []
+for bados in matches:
+    pros.append(int(bados))
+integral(pros[0],pros[1] ,int(limita) ,int(limitb) )
+
